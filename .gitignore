@@ -3,3 +3,5 @@ data/raw/
 data/clean/
 
 output/features/
+
+output/segmentation/rfm_segmentation.csv
