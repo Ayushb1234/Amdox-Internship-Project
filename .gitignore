@@ -1,7 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE and OS files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Local data
 data/raw/
-
 data/clean/
+data/processed/
+data/interim/
 
-output/features/
+# Generated outputs and model artifacts
+outputs/
+src/outputs/
+mlruns/
+*.pkl
+*.joblib
 
-output/segmentation/rfm_segmentation.csv
+# Logs
+*.log
+logs/
