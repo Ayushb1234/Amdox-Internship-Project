@@ -1,2 +1,11 @@
 numpy
 pandas
+matplotlib
+plotly
+seaborn
+scikit-learn
+streamlit
+jupyter
+openpyxl
+joblib
+scipy
