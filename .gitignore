@@ -1,14 +1,21 @@
-# Python
+# Python bytecode and caches
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
 .Python
+.python-version
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+.tox/
+.nox/
 .coverage
+.coverage.*
 htmlcov/
+coverage.xml
+*.egg-info/
+pip-wheel-metadata/
 
 # Virtual environments
 .venv/
@@ -20,6 +27,13 @@ ENV/
 .env
 .env.*
 !.env.example
+*.local
+*.secret
+*.pem
+*.key
+*.crt
+secrets/
+.streamlit/secrets.toml
 
 # Jupyter
 .ipynb_checkpoints/
@@ -31,20 +45,60 @@ ENV/
 *.swo
 .DS_Store
 Thumbs.db
+desktop.ini
 
 # Local data
 data/raw/
 data/clean/
 data/processed/
 data/interim/
+data/external/
+data/features/
 
-# Generated outputs and model artifacts
+# Generated outputs, reports, and model artifacts
 outputs/
 src/outputs/
+reports/generated/
 mlruns/
+mlartifacts/
+mlflow/mlruns/
+mlflow/mlartifacts/
+.mlflow/
 *.pkl
 *.joblib
+*.h5
+*.keras
+*.pt
+*.pth
+*.onnx
 
 # Logs
 *.log
 logs/
+
+# Airflow local runtime files
+airflow/logs/
+airflow/airflow.db
+airflow/*.db
+airflow/standalone_admin_password.txt
+airflow/webserver_config.py
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Frontend/dashboard dependencies and builds
+node_modules/
+dist/
+build/
+.next/
+.cache/
+
+# Local archives and exports
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.rar
+*.7z
