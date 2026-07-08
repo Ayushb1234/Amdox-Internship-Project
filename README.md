@@ -39,3 +39,32 @@ Country Features
 Machine Learning Dataset
 
 ```
+
+# Inventory Optimization Engine
+
+```
+
+Sales Data
+      │
+      ▼
+Product Statistics
+      │
+      ▼
+ABC Analysis
+      │
+      ▼
+XYZ Analysis
+      │
+      ▼
+Safety Stock
+      │
+      ▼
+Reorder Point
+      │
+      ▼
+Stockout Risk
+      │
+      ▼
+Inventory Dashboard
+
+```
