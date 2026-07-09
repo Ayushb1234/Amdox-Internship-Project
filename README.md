@@ -43,6 +43,32 @@ scipy
 ```
 PHase 1: Project setup and Data Preprocessing
 
+# Phase 2 : Data Cleaning and EDA done in Notebooks
+
+```
+outputs/
+    eda/
+        monthly_sales.png
+        top_products.png
+        top_countries.png
+        weekday_sales.png
+        hourly_sales.png
+```
+Outputs be Like:
+
+```
+Total Transactions :
+Total Customers :
+Total Products :
+Countries :
+Revenue :
+Units Sold :
+
+```
+
+# Phase 3 : Starts Here
+
+Feature Engineering has been done in Notebooks.
 
 # Feature Engineering
 
@@ -80,6 +106,17 @@ Country Features
       ▼
 Machine Learning Dataset
 
+```
+
+# Results:
+
+```
+outputs/
+      features/
+            customer_features.csv
+            product_features.csv
+            country_features.csv
+            master_feature_dataset.csv
 ```
 
 # Inventory Optimization Engine
