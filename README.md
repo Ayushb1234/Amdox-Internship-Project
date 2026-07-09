@@ -118,6 +118,72 @@ outputs/
             country_features.csv
             master_feature_dataset.csv
 ```
+# Phase 4: Customer Segmentation
+
+``` Goal
+
+Customer ID
+
+↓
+
+Recency
+
+↓
+
+Frequency
+
+↓
+
+Monetary
+
+↓
+
+R Score
+
+↓
+
+F Score
+
+↓
+
+M Score
+
+↓
+
+RFM Score
+
+↓
+
+Segment
+
+```
+
+# Dashboard Will Display:
+
+```
+Champions
+
+Loyal Customers
+
+Potential Loyalists
+
+Need Attention
+
+At Risk
+
+Lost Customers
+
+```
+# Output File:
+
+```
+outputs/
+
+      segmentation/
+
+            rfm_segmentation.csv
+```
+
 
 # Inventory Optimization Engine
 
