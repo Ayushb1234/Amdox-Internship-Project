@@ -1,6 +1,48 @@
 # Amdox-Internship-Project
 This is the Amodx Internship project Repo about retail AI intelligence system Buidling.
 
+# Phase 1: Project Setup
+
+Structure of Project Repo:
+
+```
+NeuralRetail/
+│
+├── data/
+│
+├── notebooks/
+│
+├── src/
+│
+├── models/
+│
+├── reports/
+│
+├── dashboard/
+│
+├── outputs/
+│
+├── requirements.txt
+│
+└── README.md
+
+```
+# Required Libraries
+```
+pandas
+numpy
+matplotlib
+plotly
+seaborn
+scikit-learn
+streamlit
+jupyter
+openpyxl
+joblib
+scipy
+```
+PHase 1: Project setup and Data Preprocessing
+
 
 # Feature Engineering
 
