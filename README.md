@@ -184,6 +184,128 @@ outputs/
             rfm_segmentation.csv
 ```
 
+# Phase 5: Demand Forcasting
+
+```
+src/
+│
+├── forecasting/
+│      ├── prepare_dataset.py
+│      ├── feature_builder.py
+│      ├── train_model.py
+│      ├── evaluate.py
+│      └── predict.py
+
+```
+# Outputs:
+
+```
+outputs/
+│
+├── forecasting/
+│      ├── datasets/
+│      ├── models/
+│      ├── metrics/
+│      └── plots/
+
+```
+
+# Demand Forcasting Dataset
+
+```
+outputs/
+
+forecasting/
+
+datasets/
+
+daily_sales.csv
+```
+
+This daily dataset will also be reused later for:
+
+1. Executive dashboard KPIs
+2. Trend analysis
+3. Demand forecasting
+4. Inventory optimization
+
+``` We are going to create
+
+Lag Features
+Revenue Yesterday
+
+Revenue 7 Days Ago
+
+Revenue 30 Days Ago
+```
+
+```Rolling Features
+7-day Average
+
+14-day Average
+
+30-day Average
+
+7-day Standard Deviation
+
+30-day Standard Deviation
+```
+
+``` Growth Features
+
+Revenue Change %
+
+Week-over-Week Growth
+
+Month-over-Month Growth
+```
+
+``` Calendar Features
+
+Weekend
+
+Quarter
+
+Month
+
+Week
+
+Day
+
+DayOfWeek
+
+```
+# Expected Output
+
+```
+Loading Daily Dataset
+
+(604, ...)
+
+Creating Lag Features
+
+Creating Rolling Features
+
+Creating Growth Features
+
+Removing Initial NaNs
+
+(574, ...)
+
+```
+
+# Outputs
+
+```
+outputs/
+
+forecasting/
+
+datasets/
+
+forecast_features.csv
+
+```
 
 # Inventory Optimization Engine
 
