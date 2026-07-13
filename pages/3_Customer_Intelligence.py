@@ -11,7 +11,7 @@ st.title("👥 Customer Intelligence")
 # ---------------------------------------------------
 
 df = pd.read_csv(
-    r"C:\Users\ka843\Coding\Amdox Internship_project\outputs\customer\customer_360.csv"
+    r"C:\Users\ka843\Coding\Amdox Internship_project\src\outputs\customer\customer_360.csv"
 )
 
 # ---------------------------------------------------

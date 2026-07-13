@@ -11,7 +11,7 @@ st.title("📦 Inventory Optimization Dashboard")
 # ==========================================================
 
 df = pd.read_csv(
-    r"C:\Users\ka843\Coding\Amdox Internship_project\outputs\inventory\product_inventory.csv"
+    r"C:\Users\ka843\Coding\Amdox Internship_project\src\outputs\inventory\product_inventory.csv"
 )
 
 # ==========================================================

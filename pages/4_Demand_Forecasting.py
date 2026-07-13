@@ -13,11 +13,11 @@ st.title("📈 Demand Forecasting Dashboard")
 # =====================================================
 
 metrics = pd.read_csv(
-    r"C:\Users\ka843\Coding\Amdox Internship_project\outputs\forecasting\metrics\model_metrics.csv"
+    r"C:\Users\ka843\Coding\Amdox Internship_project\src\outputs\forecasting\metrics\model_metrics.csv"
 )
 
 forecast = pd.read_csv(
-    r"C:\Users\ka843\Coding\Amdox Internship_project\data\forecasting\forecast_dataset.csv"
+    r"C:\Users\ka843\Coding\Amdox Internship_project\src\outputs\forecasting\datasets\forecast_features.csv"
 )
 
 forecast["Date"] = pd.to_datetime(forecast["Date"])
@@ -126,3 +126,21 @@ st.plotly_chart(fig, use_container_width=True)
 st.subheader("Forecast Metrics")
 
 st.dataframe(metrics, use_container_width=True)
+
+# to do next
+
+st.subheader("Model Evaluation Charts")
+
+img_folder = r"C:\Users\ka843\Coding\Amdox Internship_project\outputs\forecasting\plots"
+
+images = [
+    ("Actual vs Predicted", "actual_vs_predicted.png"),
+    ("Residual Plot", "residual_plot.png"),
+    ("Feature Importance", "feature_importance.png")
+]
+
+for title, file in images:
+    path = os.path.join(img_folder, file)
+    if os.path.exists(path):
+        st.markdown(f"### {title}")
+        st.image(path, use_container_width=True)

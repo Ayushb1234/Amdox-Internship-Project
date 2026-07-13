@@ -11,7 +11,7 @@ st.title("🤖 AI Product Recommendation Engine")
 # ==========================================================
 
 rules = pd.read_csv(
-    r"C:\Users\ka843\Coding\Amdox Internship_project\outputs\recommendation\association_rules.csv"
+    r"C:\Users\ka843\Coding\Amdox Internship_project\src\outputs\recommendation\association_rules.csv"
 )
 
 # Convert frozenset strings to readable text
