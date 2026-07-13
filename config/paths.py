@@ -1,63 +1,21 @@
 from pathlib import Path
 
-# ==========================================================
-# Project Root
-# ==========================================================
-
-BASE = Path(r"C:\Users\ka843\Coding\Amdox Internship_project")
-
-# ==========================================================
-# Data
-# ==========================================================
+BASE = Path(__file__).resolve().parents[1]
 
 DATA = BASE / "data"
 OUTPUTS = BASE / "outputs"
+SRC_OUTPUTS = BASE / "src" / "outputs"
 
-# ==========================================================
-# Raw Data
-# ==========================================================
+
+def output_path(*parts):
+    path = OUTPUTS.joinpath(*parts)
+    if path.exists():
+        return path
+    return SRC_OUTPUTS.joinpath(*parts)
 
 SALES = DATA / "clean" / "clean_sales.csv"
-
-# ==========================================================
-# Customer
-# ==========================================================
-
-CUSTOMER = OUTPUTS / "customer" / "customer_360.csv"
-
-# ==========================================================
-# Inventory
-# ==========================================================
-
-INVENTORY = OUTPUTS / "inventory" / "product_inventory.csv"
-
-# ==========================================================
-# Forecasting
-# ==========================================================
-
-FORECAST_METRICS = (
-    OUTPUTS
-    / "forecasting"
-    / "metrics"
-    / "model_metrics.csv"
-)
-
-# ==========================================================
-# Dashboard
-# ==========================================================
-
-DASHBOARD_KPI = (
-    OUTPUTS
-    / "dashboard"
-    / "dashboard_kpis.json"
-)
-
-# ==========================================================
-# Recommendation
-# ==========================================================
-
-RULES = (
-    OUTPUTS
-    / "recommendation"
-    / "association_rules.csv"
-)
+CUSTOMER = output_path("customer", "customer_360.csv")
+INVENTORY = output_path("inventory", "product_inventory.csv")
+FORECAST_METRICS = output_path("forecasting", "metrics", "model_metrics.csv")
+DASHBOARD_KPI = output_path("dashboard", "dashboard_kpis.json")
+RULES = output_path("recommendation", "association_rules.csv")
