@@ -1,15 +1,11 @@
 import streamlit as st
+from config.settings import *
 
 st.set_page_config(
-
-    page_title="NeuralRetail AI",
-
-    page_icon="📊",
-
-    layout="wide",
-
-    initial_sidebar_state="expanded"
-
+    page_title=APP_NAME,
+    page_icon=APP_ICON,
+    layout=LAYOUT,
+    initial_sidebar_state=INITIAL_SIDEBAR
 )
 
 st.title("🛒 NeuralRetail AI Sales Intelligence")

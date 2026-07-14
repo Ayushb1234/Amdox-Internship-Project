@@ -1,14 +1,39 @@
+# ===============================
+# Application
+# ===============================
+
 APP_NAME = "NeuralRetail AI"
 
-PRIMARY_COLOR = "#2563EB"
-SECONDARY_COLOR = "#06B6D4"
+APP_ICON = "🛒"
 
-SUCCESS = "#10B981"
+LAYOUT = "wide"
+
+INITIAL_SIDEBAR = "expanded"
+
+# ===============================
+# Dashboard
+# ===============================
+
+DEFAULT_THEME = "light"
+
+DEFAULT_COUNTRY = "All"
+
+# ===============================
+# Forecast
+# ===============================
+
+BEST_MODEL = "XGBoost"
+
+FORECAST_HORIZON = 30
+
+# ===============================
+# Colors
+# ===============================
+
+PRIMARY = "#2563EB"
+
+SUCCESS = "#16A34A"
+
 WARNING = "#F59E0B"
-DANGER = "#EF4444"
 
-CURRENCY = "$"
-DATE_FORMAT = "%d-%m-%Y"
-
-PAGE_LAYOUT = "wide"
-PAGE_ICON = "🛒"
+DANGER = "#DC2626"
