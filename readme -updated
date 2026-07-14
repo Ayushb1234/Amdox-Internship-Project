@@ -1,0 +1,237 @@
+# 🛒 NeuralRetail AI — Retail Intelligence System
+
+**Amdox Internship Project**
+
+> A retail analytics platform I built module by module — from raw transaction
+> data to a working AI system that forecasts demand, segments customers,
+> optimizes inventory, and recommends products.
+
+---
+
+## Why I built it this way
+
+When I started this internship, the brief was simple: *"turn raw retail
+transaction data into something a business can actually act on."* That's a
+vague goal, so before writing a single line of code I broke it down into the
+question a retail business actually asks, in the order they'd ask it:
+
+1. What's happening in my business right now? → **Dashboard / EDA**
+2. What do my customers, products, and time patterns look like? → **Feature Engineering**
+3. Which customers are valuable, and which are about to leave? → **Customer Intelligence & Churn**
+4. What will I sell next month? → **Demand Forecasting**
+5. How much stock should I hold, and what's at risk of running out? → **Inventory Optimization**
+6. What should I recommend to a customer at checkout? → **Recommendation Engine**
+7. Can I trust any of this? → **Model Performance**
+
+That order is also the build order — each module depends on the one before
+it, so I treated the project as a pipeline rather than seven separate
+scripts:
+
+```
+Raw Sales Data
+      │
+      ▼
+Data Cleaning & EDA
+      │
+      ▼
+Feature Engineering  ──────────────► Customer / Product / Time / Country features
+      │
+      ▼
+Customer Segmentation & Churn
+      │
+      ▼
+Demand Forecasting
+      │
+      ▼
+Inventory Optimization
+      │
+      ▼
+Recommendation Engine
+      │
+      ▼
+Streamlit Dashboard  (Executive Overview → Model Performance)
+```
+
+I kept this dependency chain in mind at every stage: nothing downstream
+gets built until the data feeding it is clean and trustworthy.
+
+---
+
+## What's actually in here
+
+| Module | What it answers | Where |
+|---|---|---|
+| Data Cleaning & EDA | Is the raw data usable? | `notebooks/data_cleaning.ipynb`, `notebooks/eda3.ipynb` |
+| Feature Engineering | What signals can models learn from? | `notebooks/feature_Engineering.ipynb`, `src/feature_engineering/` |
+| Customer Intelligence | Who are my best/worst customers? | `src/customer/customer_intelligence.ipynb` |
+| Churn | Who's about to leave? | `notebooks/customer_churn.ipynb`, `src/churn/` |
+| Demand Forecasting | What will sell, and when? | `src/forcasting/` (feature_builder, train_model, evaluate) |
+| Inventory Optimization | How much stock, and what's at risk? | `src/inventory/inventory_optimizer.py`, `Inventory_optimizer.ipynb` |
+| Recommendation Engine | What sells together? | `src/recommendation/market_basket.ipynb` |
+| Dashboard | How does a business user see all of this? | `app.py` + `pages/1_Executive_Overview.py` → `pages/7_Model_Performance.py` |
+
+---
+
+## My thinking, phase by phase
+
+### Phase 1 — Data Cleaning & EDA
+Before touching any model, I spent real time just looking at the data —
+duplicate invoices, negative quantities (returns), missing customer IDs,
+inconsistent country names. My rule for myself here: **don't engineer a
+feature on data you haven't visually checked.** Two EDA passes
+(`eda3.ipynb` + a second cleaning pass) later, I had a `clean_sales.csv`
+I trusted enough to build on.
+
+### Phase 2 — Feature Engineering
+I split features into four families instead of dumping everything into one
+notebook, because each family has a different grain (per-transaction,
+per-customer, per-product, per-country):
+
+```
+Raw Sales
+   │
+   ▼
+Time Features        (day of week, month, seasonality)
+   │
+   ▼
+Customer Features    (recency, frequency, monetary value)
+   │
+   ▼
+Product Features     (velocity, revenue share)
+   │
+   ▼
+Country Features     (regional demand patterns)
+   │
+   ▼
+ML-ready Dataset
+```
+
+### Phase 3 — Customer Intelligence & Churn
+Using the RFM (Recency, Frequency, Monetary) features from Phase 2, I built
+a `customer_360.csv` profile per customer, ran segmentation to group
+customers by value, and layered a churn model on top to flag customers
+whose behavior is drifting away from their segment's norm.
+
+### Phase 4 — Demand Forecasting
+This is the module I iterated on the most — `feature_builder` →
+`train_model` → `evaluate` as three separate notebooks so I could swap
+models without re-deriving features every time. Metrics are logged to
+`src/outputs/forecasting/metrics/model_metrics.csv` so the dashboard's
+Model Performance page always reflects the latest trained model, not a
+hardcoded number.
+
+### Phase 5 — Inventory Optimization
+I used **ABC analysis** to classify products by revenue contribution:
+
+```
+A Items → Top 80% of revenue
+B Items → Next 15% of revenue
+C Items → Last 5% of revenue
+```
+
+paired with **XYZ analysis** (demand variability) so a product isn't just
+ranked by how much money it makes, but also by how *predictable* it is —
+which directly drives safety stock and reorder point calculations, and
+ultimately a stockout risk score per product:
+
+```
+Sales Data → Product Statistics → ABC Analysis → XYZ Analysis
+   → Safety Stock → Reorder Point → Stockout Risk → Inventory Dashboard
+```
+
+### Phase 6 — Recommendation Engine
+The module I wanted to prove I could go beyond "just analytics." I
+implemented **Market Basket Analysis using the Apriori algorithm** to mine
+association rules from real transaction baskets:
+
+```
+Customer Transactions → Transaction Matrix → Apriori Algorithm
+   → Association Rules → Frequently Bought Together → Recommendation Engine
+```
+
+### Phase 7 — Dashboard (tying it together)
+Everything above is not much use to a business user if it stays in a
+notebook. `app.py` is a multi-page Streamlit app where each page maps to a
+module:
+
+- `1_Executive_Overview.py` — headline KPIs
+- `2_Sales_Analytics.py` — revenue/time trends
+- `3_Customer_Intelligence.py` — segments & customer 360
+- `4_Demand_Forecasting.py` — forecast vs actuals
+- `5_Inventory_Optimization.py` — ABC/XYZ, stockout risk
+- `6_Recommendation_Engine.py` — association rules
+- `7_Model_Performance.py` — model metrics, so the numbers are auditable
+
+---
+
+## Tech stack
+
+| Layer | Tools |
+|---|---|
+| Data & ML | Python, pandas, numpy, scikit-learn, scipy, joblib |
+| Visualization | matplotlib, seaborn, plotly |
+| App / Dashboard | Streamlit |
+| Notebooks | Jupyter |
+| Data I/O | openpyxl |
+
+---
+
+## Project structure
+
+```
+Amdox Internship_project/
+├── app.py                  # Streamlit entry point
+├── pages/                  # One dashboard page per module
+├── notebooks/               # EDA, cleaning, feature engineering, churn
+├── src/
+│   ├── customer/            # Customer 360 / intelligence
+│   ├── forcasting/          # Feature building, training, evaluation
+│   ├── inventory/            # ABC/XYZ, safety stock, reorder logic
+│   ├── recommendation/       # Market basket / Apriori
+│   └── outputs/              # Model outputs consumed by the dashboard
+├── data/
+│   ├── raw/ processed/ clean/ features/ external/
+├── outputs/                  # EDA plots, KPIs, forecasting/segmentation exports
+├── requirements.txt
+└── README.md
+```
+
+---
+
+## Running it locally
+
+```bash
+pip install -r requirements.txt
+streamlit run app.py
+```
+
+> **Note to self:** a few dashboard pages currently read data from absolute
+> local paths (`C:\Users\...`). Before sharing this outside my own machine,
+> swap those for relative paths (e.g. `Path(__file__).parent / "data"`) so
+> the app actually runs on someone else's setup.
+
+---
+
+## What I'd improve next
+
+- Replace hardcoded absolute file paths in `pages/*.py` with relative paths.
+- Move the empty scaffold folders (`churn/`, `mlops/`, `pricing/`,
+  `preprocessing/`, `ingestion/`) from placeholders to real modules, or
+  remove them if the logic has permanently moved into notebooks.
+- Wire up `mlflow/` and `airflow/` (currently just placeholder `.txt`
+  files) if I want proper experiment tracking and pipeline scheduling.
+- Add tests under `tests/` — right now it's just a placeholder.
+- Write a short model card per module (what it predicts, on what data,
+  known limitations) alongside `outputs/forecasting/metrics/model_metrics.csv`.
+
+---
+
+## A note on how I approached this
+
+I didn't build this as seven unrelated ML projects in one repo. Every
+module was built to answer a question the previous module raised, and the
+git history reflects that — EDA → feature engineering → customer
+intelligence → forecasting → inventory → recommendations → dashboard →
+model performance, in that order, each one building on clean output from
+the last. That's the thinking behind the folder structure too: it's meant
+to be read top-to-bottom as a pipeline, not browsed at random.
