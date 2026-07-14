@@ -1,377 +1,341 @@
-# Amdox-Internship-Project
-This is the Amodx Internship project Repo about retail AI intelligence system Buidling.
+# NeuralRetail AI v2.0
 
-# Phase 1: Project Setup
+**Enterprise Retail Intelligence Platform**
 
-Structure of Project Repo:
+NeuralRetail AI is an end-to-end retail analytics and machine learning platform built to transform transactional sales data into business decisions. It combines data cleaning, feature engineering, customer intelligence, demand forecasting, inventory optimization, association-rule recommendations, and a multi-page Streamlit dashboard.
 
-```
-NeuralRetail/
-│
-├── data/
-│
-├── notebooks/
-│
-├── src/
-│
-├── models/
-│
-├── reports/
-│
-├── dashboard/
-│
-├── outputs/
-│
-├── requirements.txt
-│
-└── README.md
+---
 
-```
-# Required Libraries
-```
-pandas
-numpy
-matplotlib
-plotly
-seaborn
-scikit-learn
-streamlit
-jupyter
-openpyxl
-joblib
-scipy
-```
-PHase 1: Project setup and Data Preprocessing
+## ✨ Project Highlights
 
-# Phase 2 : Data Cleaning and EDA done in Notebooks
+* **Sales analytics** with revenue trends, top products, and country-wise performance
+* **Customer intelligence** with CLV, churn risk, customer tiers, and 360° profiles
+* **Demand forecasting** using engineered time-series features and ML models
+* **Inventory optimization** with ABC, XYZ, safety stock, reorder point, and priority scoring
+* **Recommendation engine** using Apriori and association rules
+* **Executive dashboard** built in Streamlit with reusable KPI panels and visual analytics
 
-```
-outputs/
-    eda/
-        monthly_sales.png
-        top_products.png
-        top_countries.png
-        weekday_sales.png
-        hourly_sales.png
-```
-Outputs be Like:
+---
 
-```
-Total Transactions :
-Total Customers :
-Total Products :
-Countries :
-Revenue :
-Units Sold :
+## 🧠 Business Value
 
-```
+NeuralRetail AI helps retail teams answer questions like:
 
-# Phase 3 : Starts Here
+* Which products should be reordered now?
+* Which customers are high value or at risk of churn?
+* What are the strongest product associations for cross-sell?
+* How is revenue trending over time?
+* Which forecasting model performs best?
 
-Feature Engineering has been done in Notebooks.
+---
 
-# Feature Engineering
+## 🏗️ System Architecture
 
-
-```
-Forecasting
-      ↑
-Inventory
-      ↑
-Customer Segmentation
-      ↑
-Dashboard
-      ↑
+```text
+Raw CSV Data
+   ↓
+Data Cleaning
+   ↓
+EDA + Business Summary
+   ↓
 Feature Engineering
-
-```
-# Feature Engineering Architecture
-
-```
-
-Raw Sales
-      │
-      ▼
-Time Features
-      │
-      ▼
-Customer Features
-      │
-      ▼
-Product Features
-      │
-      ▼
-Country Features
-      │
-      ▼
-Machine Learning Dataset
-
+   ↓
+Customer Segmentation (RFM)
+   ↓
+Demand Forecasting (XGBoost / Baselines)
+   ↓
+Inventory Optimization (ABC / XYZ / Reorder Logic)
+   ↓
+Customer Intelligence (CLV / Churn / Tier)
+   ↓
+Recommendation Engine (Apriori)
+   ↓
+KPI Generation
+   ↓
+Streamlit Dashboard
 ```
 
-# Results:
+---
 
-```
-outputs/
-      features/
-            customer_features.csv
-            product_features.csv
-            country_features.csv
-            master_feature_dataset.csv
-```
-# Phase 4: Customer Segmentation
+## 📁 Project Structure
 
-``` Goal
-
-Customer ID
-
-↓
-
-Recency
-
-↓
-
-Frequency
-
-↓
-
-Monetary
-
-↓
-
-R Score
-
-↓
-
-F Score
-
-↓
-
-M Score
-
-↓
-
-RFM Score
-
-↓
-
-Segment
-
+```text
+NeuralRetail/
+├── app.py
+├── config/
+│   ├── paths.py
+│   └── settings.py
+├── components/
+├── css/
+├── data/
+├── pages/
+├── outputs/
+├── src/
+│   ├── forecasting/
+│   ├── inventory/
+│   ├── customer/
+│   ├── recommendation/
+│   └── dashboard/
+├── utils/
+├── requirements.txt
+└── README.md
 ```
 
-# Dashboard Will Display:
+---
 
-```
-Champions
+## 📊 Modules Implemented
 
-Loyal Customers
+### 1) Data Loading & Cleaning
 
-Potential Loyalists
+* Standardized column names
+* Parsed date fields
+* Removed duplicates
+* Handled missing values
+* Created total price column
+* Split clean sales and customer-ready datasets
 
-Need Attention
+### 2) Exploratory Data Analysis
 
-At Risk
+* Total revenue
+* Total orders
+* Total customers
+* Top products
+* Top countries
+* Weekday and hourly trends
 
-Lost Customers
+### 3) Feature Engineering
 
-```
-# Output File:
+* Time features: year, month, week, day, hour
+* Customer features: frequency, monetary value, recency
+* Product features: demand, revenue, selling days
+* Country features: revenue, orders, customers
 
-```
-outputs/
+### 4) Customer Segmentation
 
-      segmentation/
+* RFM scoring
+* Segment labels such as Champions, Loyal Customers, At Risk, and Lost
 
-            rfm_segmentation.csv
-```
+### 5) Demand Forecasting
 
-# Phase 5: Demand Forcasting
+* Daily sales aggregation
+* Lag features
+* Rolling mean and rolling std features
+* Growth features
+* Model training with Linear Regression, Random Forest, and XGBoost
+* Evaluation using MAE, RMSE, and MAPE
 
-```
-src/
-│
-├── forecasting/
-│      ├── prepare_dataset.py
-│      ├── feature_builder.py
-│      ├── train_model.py
-│      ├── evaluate.py
-│      └── predict.py
+### 6) Inventory Optimization
 
-```
-# Outputs:
+* Product-level sales statistics
+* ABC classification
+* XYZ classification
+* Inventory classes like AX, AY, CZ
+* Safety stock
+* Reorder point
+* Stockout risk
+* Inventory priority
 
-```
-outputs/
-│
-├── forecasting/
-│      ├── datasets/
-│      ├── models/
-│      ├── metrics/
-│      └── plots/
+### 7) Customer Intelligence
 
-```
+* Customer lifetime value
+* Customer tiers
+* Churn risk scoring
+* Customer health score
+* Customer 360 dataset
 
-# Demand Forcasting Dataset
+### 8) Recommendation Engine
 
-```
-outputs/
+* Market basket analysis using Apriori
+* Frequent itemsets
+* Association rules
+* Product recommendation outputs
 
-forecasting/
+### 9) KPI Generator
 
-datasets/
+* Centralized dashboard KPI JSON and CSV
+* Used to power the executive dashboard
 
-daily_sales.csv
-```
+### 10) Streamlit Dashboard
 
-This daily dataset will also be reused later for:
+* Executive overview
+* Sales analytics
+* Customer intelligence
+* Demand forecasting
+* Inventory optimization
+* Recommendation engine
+* Model performance
 
-1. Executive dashboard KPIs
-2. Trend analysis
-3. Demand forecasting
-4. Inventory optimization
+---
 
-``` We are going to create
+## 📈 Key Outputs
 
-Lag Features
-Revenue Yesterday
+The project generates the following artifacts:
 
-Revenue 7 Days Ago
+* `outputs/customer/customer_360.csv`
+* `outputs/inventory/product_inventory.csv`
+* `outputs/forecasting/datasets/daily_sales.csv`
+* `outputs/forecasting/datasets/forecast_features.csv`
+* `outputs/forecasting/metrics/model_metrics.csv`
+* `outputs/recommendation/association_rules.csv`
+* `outputs/recommendation/frequent_itemsets.csv`
+* `outputs/dashboard/dashboard_kpis.json`
+* `outputs/dashboard/dashboard_kpis.csv`
 
-Revenue 30 Days Ago
-```
+---
 
-```Rolling Features
-7-day Average
+## 🛠️ Tech Stack
 
-14-day Average
+**Language:** Python 3.11
+**Data Processing:** pandas, numpy
+**Machine Learning:** scikit-learn, xgboost, mlxtend
+**Visualization:** plotly, matplotlib
+**Dashboard:** Streamlit
+**Utilities:** joblib, scipy, openpyxl
 
-30-day Average
+---
 
-7-day Standard Deviation
+## 🚀 Getting Started
 
-30-day Standard Deviation
-```
+### 1. Clone the repository
 
-``` Growth Features
-
-Revenue Change %
-
-Week-over-Week Growth
-
-Month-over-Month Growth
-```
-
-``` Calendar Features
-
-Weekend
-
-Quarter
-
-Month
-
-Week
-
-Day
-
-DayOfWeek
-
-```
-# Expected Output
-
-```
-Loading Daily Dataset
-
-(604, ...)
-
-Creating Lag Features
-
-Creating Rolling Features
-
-Creating Growth Features
-
-Removing Initial NaNs
-
-(574, ...)
-
+```bash
+git clone <your-repo-url>
+cd NeuralRetail
 ```
 
-# Outputs
+### 2. Create a virtual environment
 
-```
-outputs/
-
-forecasting/
-
-datasets/
-
-forecast_features.csv
-
+```bash
+python -m venv venv
 ```
 
-# Inventory Optimization Engine
+### 3. Activate the environment
 
+**Windows**
+
+```bash
+venv\Scripts\activate
 ```
 
-Sales Data
-      │
-      ▼
-Product Statistics
-      │
-      ▼
-ABC Analysis
-      │
-      ▼
-XYZ Analysis
-      │
-      ▼
-Safety Stock
-      │
-      ▼
-Reorder Point
-      │
-      ▼
-Stockout Risk
-      │
-      ▼
-Inventory Dashboard
+**Mac/Linux**
 
+```bash
+source venv/bin/activate
 ```
 
-# What is ABC Analysis?
+### 4. Install dependencies
 
-```
-ABC Analysis classifies products based on Revenue Contribution.
-
-A Items → Top 80% Revenue
-B Items → Next 15% Revenue
-C Items → Last 5% Revenue
-
+```bash
+pip install -r requirements.txt
 ```
 
-# Module 9 — AI Recommendation Engine
+### 5. Run the Streamlit dashboard
 
-This is the module that makes interviewers say:
-
-"This isn't just analytics, this actually recommends products."
-
-We'll implement Market Basket Analysis using the Apriori Algorithm.
-
-What we'll build
-
+```bash
+streamlit run app.py
 ```
-Customer Transactions
-            │
-            ▼
-Transaction Matrix
-            │
-            ▼
-Apriori Algorithm
-            │
-            ▼
-Association Rules
-            │
-            ▼
-Frequently Bought Together
-            │
-            ▼
-Recommendation Engine
+
+---
+
+## ⚙️ How to Rebuild the Pipeline
+
+Run the project modules in this order:
+
+```bash
+python src/data_loader.py
+python src/data_cleaning.py
+python src/eda.py
+python src/feature_engineering.py
+python src/customer_segmentation.py
+python src/forecasting/prepare_dataset.py
+python src/forecasting/feature_builder.py
+python src/forecasting/train_model.py
+python src/forecasting/evaluate_model.py
+python src/inventory/inventory_optimizer.py
+python src/customer/customer_intelligence.py
+python src/recommendation/market_basket.py
+python src/dashboard/generate_kpis.py
 ```
+
+---
+
+## 📊 Forecasting Results
+
+The best forecasting model in the current pipeline is:
+
+* **XGBoost**
+* **MAPE:** ~11.78%
+
+This makes it the selected production model for revenue forecasting in the dashboard.
+
+---
+
+## 📦 Inventory Intelligence Snapshot
+
+Current inventory outputs include:
+
+* **ABC classes** for revenue contribution
+* **XYZ classes** for demand variability
+* **Safety stock** for replenishment buffers
+* **Reorder point** for stock planning
+* **Priority labels** for operational action
+
+---
+
+## 👥 Customer Intelligence Snapshot
+
+The customer intelligence layer provides:
+
+* CLV estimation
+* Tier assignment
+* Churn risk classification
+* Health scoring
+* Customer-level 360 profiles
+
+---
+
+## 🤖 Recommendation Engine Snapshot
+
+The recommendation engine produces:
+
+* Frequent itemsets
+* Association rules
+* Product affinities
+* Cross-sell signals
+
+---
+
+## 🧪 Sample Dataset
+
+The sales dataset contains fields such as:
+
+* Invoice
+* StockCode
+* Description
+* Quantity
+* InvoiceDate
+* Price
+* Customer ID
+* Country
+* Total Price
+
+---
+
+## 📌 Notes
+
+* File paths are centralized in `config/paths.py`
+* App settings are centralized in `config/settings.py`
+* Generated outputs are stored in the `outputs/` folder
+* The dashboard is designed to work as a modular analytics application
+
+---
+
+## 👨‍💻 Author
+
+Built by **Ayush**
+
+---
+
+## ⭐ If this project helped you
+
+Give the repository a star, fork it, and use it as a base for your own retail analytics or MLOps portfolio project.
